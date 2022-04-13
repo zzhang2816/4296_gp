@@ -9,8 +9,11 @@ pip install -r requirements.txt
 ### Usage
 
 ```
-python server/mserver.py 
+python3 mserver.py -ip 0.0.0.0
 
-python client/client.py
+python3 mclient.py
 ```
 
+### Result
+
+![demo](./demo.png)
