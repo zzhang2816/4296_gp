@@ -15,6 +15,7 @@ def zip_and_transfer(path = 'images',zip_name = 'tmp.zip'):
         for fn in os.listdir(path):
             file.write(os.path.join(path,fn))
     filesize = str(os.path.getsize('tmp.zip'))
+    print(filesize)
     conn.sendall(filesize.encode())
     f = open('tmp.zip', 'rb')
     l = f.read()
@@ -51,8 +52,8 @@ conn, address = sk.accept()
 receive_and_unzip()
 
 # 3. start inference
-conn.sendall('start inference'.encode())
 detect.main("images")
+conn.sendall('inference finished'.encode())
 
 
 # 4. reply the prediction results

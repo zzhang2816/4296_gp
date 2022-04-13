@@ -22,7 +22,7 @@ def zip_and_transfer(path = 'images',zip_name = 'tmp.zip'):
     s.sendall(l)
 
 def receive_and_unzip():
-    filesize = int(s.recv(1024).decode())
+    filesize = int(s.recv(1).decode())
     filename = "tmp.zip"
     f = open(filename, 'wb')
     client_data = s.recv(1024)
