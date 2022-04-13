@@ -41,7 +41,7 @@ def receive_and_unzip():
 
 
 zip_and_transfer()
-server_reply = s.recv(1024).decode()
+server_reply = s.recv(1024).decode('utf-8')
 print(server_reply)
 receive_and_unzip()
 os.remove("tmp.zip")
