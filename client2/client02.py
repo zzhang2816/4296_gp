@@ -64,7 +64,7 @@ results.save()  # or .show()
 s.sendall('inference finished'.encode('utf-8'))
 
 # 4. reply the prediction results
-zip_and_transfer(path="runs\detect\exp")
+zip_and_transfer(path="runs/detect/exp")
 
 s.close
 

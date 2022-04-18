@@ -53,7 +53,6 @@ model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
 
 imgs = os.listdir('images')  # batch of images
 imgs = list(map(lambda img: os.path.join('images/', img), imgs))
-imgs = imgs[1:]  # remove .DS_Store file
 
 # Inference
 results = model(imgs)
@@ -64,7 +63,7 @@ results.save()  # or .show()
 s.sendall('inference finished'.encode('utf-8'))
 
 # 4. reply the prediction results
-zip_and_transfer(path="runs\detect\exp")
+zip_and_transfer(path="runs/detect/exp")
 
 s.close
 
@@ -73,3 +72,4 @@ print("finish time %.3f s", time() - start_time)
 os.remove("tmp.zip")
 shutil.rmtree("images")
 shutil.rmtree("runs")
+
