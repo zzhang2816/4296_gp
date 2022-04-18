@@ -73,6 +73,7 @@ def run(x):
     sock.run(thread_idx)
 
 
+pool = ThreadPool(2)
 THREAD_IDX = 0
 while True:
     tcpsock.listen(5)
@@ -98,13 +99,15 @@ while True:
 
         start_time = time()
 
-        pool = ThreadPool(2)
         pool.map(run, threads)
 
         print("total computing time %.3f s", time() - start_time)
         for i in range(len(threads)):
             os.remove(f'tmp_{i}.zip')
         break
+
+pool.close()
+pool.join()
 
 
 
