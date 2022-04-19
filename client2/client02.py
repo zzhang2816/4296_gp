@@ -45,8 +45,6 @@ def receive_and_unzip():
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((TCP_IP, TCP_PORT))
 
-start_time = time()
-
 receive_and_unzip()
 
 model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
@@ -66,9 +64,7 @@ s.sendall('inference finished'.encode('utf-8'))
 # 4. reply the prediction results
 zip_and_transfer(path="runs/detect/exp")
 
-s.close
-
-print("finish time %.3f s", time() - start_time)
+s.close()
 
 os.remove("tmp.zip")
 shutil.rmtree("images")

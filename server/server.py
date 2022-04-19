@@ -2,7 +2,7 @@ import socket
 from threading import Thread
 import zipfile
 import os
-from time import time
+import time
 
 TCP_IP = 'localhost'
 TCP_PORT = 9001
@@ -20,6 +20,8 @@ class ClientThread(Thread):
         print(" New thread started for " + ip + ":" + str(port))
 
     def run(self):
+        start_time = time.time()
+        print('start thread', self.idx)
         self.zip_and_transfer()
 
         server_reply = self.sock.recv(1024).decode('utf-8')
@@ -29,6 +31,7 @@ class ClientThread(Thread):
 
         os.remove(f"tmp_{self.idx}.zip")
         self.sock.close()
+        print('finish thread', self.idx, 'in', time.time() - start_time, 's')
 
     def zip_and_transfer(self):
         filesize = str(os.path.getsize(f'tmp_{self.idx}.zip'))
@@ -86,7 +89,7 @@ while True:
                 for fn in files:
                     file.write(os.path.join('images', fn))
 
-        start_time = time()
+        start_time = time.time()
         for i, thread in enumerate(threads):
             thread.start()
 
@@ -95,5 +98,5 @@ while True:
 for t in threads:
     t.join()
 
-print("total computing time %.3f s", time() - start_time)
+print("total computing time:", time.time() - start_time, 's')
 
