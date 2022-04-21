@@ -30,7 +30,9 @@ class ClientThread(Thread):
         self.receive_and_unzip()
 
         os.remove(f"tmp_{self.idx}.zip")
+
         self.sock.close()
+
         print('finish thread', self.idx, 'in', time.time() - start_time, 's')
 
     def zip_and_transfer(self):
@@ -99,4 +101,3 @@ for t in threads:
     t.join()
 
 print("total computing time:", time.time() - start_time, 's')
-

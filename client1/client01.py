@@ -3,7 +3,7 @@ import zipfile
 import os
 import shutil
 import torch
-from time import  time
+import time
 
 TCP_IP = 'localhost'
 TCP_PORT = 9001
@@ -53,7 +53,9 @@ imgs = os.listdir('images')  # batch of images
 imgs = list(map(lambda img: os.path.join('images/', img), imgs))
 
 # Inference
+start_time = time.time()
 results = model(imgs)
+print("total computing time for yolo:", time.time() - start_time, 's')
 
 # Results
 results.save()  # or .show()
@@ -68,4 +70,3 @@ s.close()
 os.remove("tmp.zip")
 shutil.rmtree("images")
 shutil.rmtree("runs")
-
