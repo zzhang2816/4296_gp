@@ -49,7 +49,7 @@ class ClientThread(Thread):
 
     def receive_and_unzip(self):
         filesize = int(self.sock.recv(1024).decode())
-        print(f"receive message from {str(address)}")
+        print(f"receive message from ({self.ip}, {self.port})")
         filename = f"tmp_{self.idx}.zip"
         f = open(filename, 'wb')
         client_data = self.sock.recv(1024)
