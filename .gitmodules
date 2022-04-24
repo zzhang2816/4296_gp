@@ -1,0 +1,3 @@
+[submodule "distributed_computing/DeepThings"]
+	path = distributed_computing/DeepThings
+	url = https://github.com/SLAM-Lab/DeepThings
